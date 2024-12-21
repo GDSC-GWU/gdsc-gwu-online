@@ -1,1 +1,1 @@
-# gds-gwu-web
+# gdsc-gwu-web
