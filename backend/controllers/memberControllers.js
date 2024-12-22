@@ -1,10 +1,9 @@
-import {firebaseApp,fireStoreDB, fireStorageDB} from '../config/firebase.js';
-import { getStorage, ref, uploadBytes, getDownloadURL,deleteObject } from 'firebase/storage';
+import {fireStoreDB, fireStorageDB} from '../config/firebase.js';
+import {ref, uploadBytes, getDownloadURL,deleteObject } from 'firebase/storage';
 import Member from '../models/memberModel.js';
 
 
 import {
-  getFirestore,
   collection,
   doc,
   addDoc,
@@ -12,7 +11,6 @@ import {
   getDocs,
   updateDoc,
   deleteDoc,
-  setDoc
 } from 'firebase/firestore';
 
 
@@ -29,9 +27,7 @@ export const createMember = async (req,res,next)=>{
 
         const photoURL = await getDownloadURL(snapshot.ref);
         data.photoURL = photoURL
-        delete(data.photo)
-
-        console.log(data)   
+        delete(data.photo) 
         const docRef = await addDoc(collection(fireStoreDB, "members"),data);
         res.status(200).send('member created sucessfully');
     }catch(error){
@@ -84,8 +80,6 @@ export const deleteMember = async (req,res,next)=>{
 
         if (memberDocSnap.exists()){
             const previousPhotoURL = memberDocSnap.data().photoURL;
-            console.log(previousPhotoURL);
-
             if (previousPhotoURL){
                 const fileRef = ref(fireStorageDB, previousPhotoURL)
                 await deleteObject(fileRef)
@@ -118,7 +112,6 @@ export const updateMember = async (req,res,next)=>{
             const previousPhotoURL = memberDocSnap.data().photoURL;
 
             if (previousPhotoURL && req.files[0]){
-                console.log("HEYYYY")
                 const fileRef = ref(fireStorageDB, previousPhotoURL);
                 await deleteObject(fileRef);
 
