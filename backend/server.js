@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import memberRoute from './routes/memberRoutes.js'
 import eventRoute from './routes/eventRoutes.js'
+import FAQRoute from './routes/faqRoutes.js'
 import multer from 'multer';
 
 
@@ -15,6 +16,7 @@ app.use(upload.any()); // Middleware to parse `multipart/form-data`
 
 app.use('/api', memberRoute);
 app.use('/api', eventRoute);
+app.use('/api', FAQRoute);
 
 app.get('/', (req, res)=>{
     res.send('<h1>Hello this is GDSC GWU Online</h1>');
