@@ -1,12 +1,10 @@
 import express from "express";
+import router from './router.js';
 
 import {createMember, 
     getMembers,
     deleteMember,
     updateMember} from '../controllers/memberControllers.js'
-
-
-const router = express.Router();
 
 router.get("/getMembers", getMembers)
 router.post("/createMember", createMember)

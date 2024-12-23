@@ -87,7 +87,7 @@ export const deleteMember = async (request,response,next)=>{
 
         }
         await deleteDoc(memberDoc);
-        response.status(200).send("Member Deleted Successfully!")
+        response.status(200).send("Member Deleted Successfully!");
 
     }catch(error){
         response.status(400).send(error.message)
