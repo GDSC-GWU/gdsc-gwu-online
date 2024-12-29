@@ -11,7 +11,6 @@ import {
     updateDoc,
     deleteDoc,
 } from 'firebase/firestore';
-import { request, response } from 'express';
 
 
 export const createEvent = async (request, response, next) =>{
