@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {getFirestore} from "firebase/firestore";
 import { getStorage} from 'firebase/storage';
+import admin from "firebase-admin";
+import serviceAccount from "./firebaseService.json" assert { type: "json" };
 
 import dotenv from 'dotenv';
 
@@ -22,5 +22,11 @@ const firebaseConfig = {apiKey: process.env.FIREBASE_apiKey,
 const firebaseApp = initializeApp(firebaseConfig);
 const fireStoreDB = getFirestore(firebaseApp); //Fire store. To do CRUD on documents
 const fireStorageDB = getStorage(firebaseApp); //Fire storage. TO do CRUD on media
-export {firebaseApp, fireStoreDB, fireStorageDB};
+
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+})
+
+export {firebaseApp, fireStoreDB, fireStorageDB, admin};
 
