@@ -56,3 +56,4 @@ Thumbs.db
 
 # Miscellaneous
 !.gitignore
+backend/config/firebaseService.json
